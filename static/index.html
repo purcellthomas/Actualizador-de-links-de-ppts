@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Enlaces PPTX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gestor de Enlaces PPTX</h1>
+            <p>Sube tu presentación para actualizar las rutas de tus cuadros y gráficos vinculados.</p>
+        </header>
+
+        <main>
+            <!-- Paso 1: Subida de archivo -->
+            <section id="step1" class="step active">
+                <div class="upload-zone" id="drop-zone">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 4L12 16M12 4L8 8M12 4L16 8M4 17L4 19C4 20.1046 4.89543 21 6 21L18 21C19.1046 21 20 20.1046 20 19L20 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Arrastra tu archivo .pptx aquí</h3>
+                    <p>o</p>
+                    <label for="file-input" class="btn btn-primary">Seleccionar Archivo</label>
+                    <input type="file" id="file-input" accept=".pptx" hidden>
+                </div>
+                <div id="upload-status" class="status-msg hidden">
+                    <div class="spinner"></div>
+                    <span>Analizando presentación, por favor espera...</span>
+                </div>
+            </section>
+
+            <!-- Paso 2: Edición de links -->
+            <section id="step2" class="step hidden">
+                <div class="tools-panel">
+                    <h3>Reemplazo Global</h3>
+                    <div class="find-replace-bar">
+                        <div class="input-group">
+                            <label>Buscar texto:</label>
+                            <input type="text" id="find-input" placeholder="Ej: /2025/">
+                        </div>
+                        <div class="input-group">
+                            <label>Reemplazar con:</label>
+                            <input type="text" id="replace-input" placeholder="Ej: /2026/">
+                        </div>
+                        <button id="apply-global-btn" class="btn btn-secondary">Aplicar a todos</button>
+                    </div>
+                </div>
+
+                <div class="links-panel">
+                    <h3>Enlaces Detectados (<span id="links-count">0</span>)</h3>
+                    <p class="subtitle">Revisa y ajusta los enlaces nuevos antes de guardar.</p>
+                    <div class="links-list" id="links-list">
+                        <!-- Generado dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="actions-bar">
+                    <button id="back-btn" class="btn btn-outline">Cancelar</button>
+                    <button id="submit-btn" class="btn btn-primary">
+                        <span>Guardar Cambios y Descargar</span>
+                    </button>
+                </div>
+                
+                <div id="update-status" class="status-msg hidden">
+                    <div class="spinner"></div>
+                    <span>Aplicando cambios y generando archivo...</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
